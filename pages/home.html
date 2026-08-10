@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>coreco - Dashboard</title>
+  <style>
+    :root {
+      --primary: #ff7b00;
+      --primary-hover: #e06d00;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --sidebar-bg: #1f2937;
+      --sidebar-text: #9ca3af;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 240px;
+      background-color: var(--sidebar-bg);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .sidebar-brand {
+      padding: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 1rem 0;
+    }
+
+    .sidebar-menu li a {
+      display: block;
+      padding: 0.85rem 1.5rem;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .sidebar-menu li a:hover,
+    .sidebar-menu li.active a {
+      background-color: #374151;
+      color: #ffffff;
+      border-left: 4px solid var(--primary);
+    }
+
+    /* Main Container */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .navbar {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .btn-logout {
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      background-color: #fee2e2;
+      color: #dc2626;
+      border-color: #fca5a5;
+    }
+
+    /* Content Area */
+    .content {
+      padding: 2rem;
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Dashboard Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .card h3 {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .card .value {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Data Table Section */
+    .table-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .table-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    th {
+      background-color: #f9fafb;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">coreco</div>
+    <ul class="sidebar-menu">
+      <li class="active"><a href="#">Dashboard</a></li>
+      <li><a href="#">Admin</a></li>
+      <li><a href="#">PIM</a></li>
+      <li><a href="#">Leave</a></li>
+      <li><a href="#">Time</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Area -->
+  <div class="main-wrapper">
+    <header class="navbar">
+      <div><strong>Module:</strong> Dashboard Overview</div>
+      <div class="user-profile">
+        <div class="user-avatar" id="avatar-display">A</div>
+        <span id="user-display">Admin User</span>
+        <button class="btn-logout" id="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <h1 class="page-title">System Dashboard</h1>
+
+      <!-- Stats Grid -->
+      <div class="grid">
+        <div class="card">
+          <h3>Total Employees</h3>
+          <div class="value">124</div>
+        </div>
+        <div class="card">
+          <h3>Pending Requests</h3>
+          <div class="value">8</div>
+        </div>
+        <div class="card">
+          <h3>System Status</h3>
+          <div class="value" style="color: #10b981;">Online</div>
+        </div>
+      </div>
+
+      <!-- User List Table -->
+      <div class="table-card">
+        <h2>System Users (Automation Target Table)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>User Role</th>
+              <th>Employee Name</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>Admin</code></td>
+              <td>Admin</td>
+              <td>Paul Collings</td>
+              <td><span class="status-badge">Enabled</span></td>
+            </tr>
+            <tr>
+              <td><code>esharm</code></td>
+              <td>ESS</td>
+              <td>Emma Sharma</td>
+              <td><span class="status-badge">Enabled</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Protect dashboard route
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    // Set active username in header
+    const savedUser = localStorage.getItem("username") || "Admin User";
+    document.getElementById("user-display").textContent = savedUser + " User";
+    document.getElementById("avatar-display").textContent = savedUser.charAt(0).toUpperCase();
+
+    // Logout functionality
+    document.getElementById("logout-btn").addEventListener("click", function () {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
