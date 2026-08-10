@@ -51,18 +51,12 @@ with sync_playwright() as p:
 
         # Capture screenshot
         page.screenshot(
-            path="/Users/mrugankkapse/Documents/Playwright_Project/test/no_records_found.png",
+            path="/Users/mrugankkapse/Documents/Playwright_Project/test/leave_pop_up.png",
             full_page=True
         )
 
         print("No Records Found message detected")
         print("Screenshot saved")
-
-    else:
-
-        print("Records are available")
-
     page.wait_for_timeout(3000)
-
     # 10. Close browser
     browser.close()
