@@ -1,0 +1,3 @@
+QA Automation Test File
+This file is used for upload testing on OrangeHRM.
+Created by: Himanshu Raj Prakash
